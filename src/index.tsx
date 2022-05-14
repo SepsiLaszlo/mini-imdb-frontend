@@ -1,11 +1,25 @@
-import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
+import { extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
+  colors: {
+    primary: "#805AD5"
+  },
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "Georgia, serif",
+    mono: "Menlo, monospace",
+  }})
+
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
+
+
 
 root.render(
   <React.StrictMode>
