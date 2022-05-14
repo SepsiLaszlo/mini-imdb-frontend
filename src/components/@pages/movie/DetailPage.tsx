@@ -11,16 +11,17 @@ import {
 import { FC, useEffect, useState } from "react";
 import { Page } from "../../Page";
 import axios from "axios";
-import { Movie } from "../../Dtos";
-import { Link as RouterLink, Outlet } from "react-router-dom";
+import { Movie, MovieWithComments } from "../../Dtos";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import { BasicTheme } from "../../constants";
 import { MovieComponent } from "./MovieComponent";
-export const MovieIndexPage: FC = (props) => {
+export const MovieDetailPage: FC = (props) => {
   const baseURL = "http://localhost:5000/api/Movies";
+  let params = useParams();
 
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movie, setMovies] = useState<MovieWithComments>();
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
+    axios.get(baseURL + `/${params.id}`).then((response) => {
       console.log(response.data);
       setMovies(response.data);
     });
@@ -28,13 +29,9 @@ export const MovieIndexPage: FC = (props) => {
 
   return (
     <Page>
-      <Text fontSize="3xl" mb={5}>
-        {" "}
-        Movies
-      </Text>
-      {movies.map((movie) => (
-       <MovieComponent movie={movie}></MovieComponent>
-      ))}
+      {movie && (
+        <MovieComponent movie={movie} withButton={false}></MovieComponent>
+      )}
     </Page>
   );
 };

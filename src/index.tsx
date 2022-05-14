@@ -14,7 +14,8 @@ const theme = extendTheme({
     body: "system-ui, sans-serif",
     heading: "Georgia, serif",
     mono: "Menlo, monospace",
-  }})
+  },
+})
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
