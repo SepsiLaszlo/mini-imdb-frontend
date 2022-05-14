@@ -1,29 +1,18 @@
-import { ColorModeScript } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
     <ColorModeScript />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          {/* <Route index element={<Home />} />
-          <Route path="teams" element={<Teams />}>
-            <Route path=":teamId" element={<Team />} />
-            <Route path="new" element={<NewTeamForm />} />
-            <Route index element={<LeagueStandings />} />
-          </Route> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ChakraProvider theme={theme}>
+    <App></App>
+  </ChakraProvider>
   </React.StrictMode>
 );
 

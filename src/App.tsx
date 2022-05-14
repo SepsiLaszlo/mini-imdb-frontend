@@ -1,21 +1,17 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { MovieIndexPage } from "./components/@pages/movie/IndexPage"
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <div>Hello</div>
-    </Box>
-  </ChakraProvider>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<MovieIndexPage />}/>
+    <Route path="/movie" element={<MovieIndexPage />}/>
+      {/* <Route path="teams" element={<Teams />}>
+        <Route path=":teamId" element={<Team />} />
+        <Route path="new" element={<NewTeamForm />} />
+        <Route index element={<LeagueStandings />} />
+      </Route>  */}
+  </Routes>
+</BrowserRouter>
+
 )
