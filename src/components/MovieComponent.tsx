@@ -3,26 +3,28 @@ import {
   Button,
   HStack,
   Link,
+  SpaceProps,
   StackDivider,
   Tag,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
-import { Page } from "../../Page";
+import { Page } from "./Page";
 import axios from "axios";
-import { Movie } from "../../Dtos";
+import { Movie } from "./Dtos";
 import { Link as RouterLink, Outlet } from "react-router-dom";
-import { BasicTheme } from "../../constants";
+import { basicTheme } from "./constants";
 
 export type MovieComponentProps = {
  movie: Movie,
  withButton?:boolean
 }
-export const MovieComponent: FC<MovieComponentProps> = ({movie, withButton=true, children, ...props}) => {
+export const MovieComponent: FC<MovieComponentProps & SpaceProps> = ({movie, withButton=true, children, ...props}) => {
   return (
     
         <VStack
+          {...props}
           bg="gray.200"
           textAlign="start"
           alignItems="flex-start"
@@ -39,11 +41,11 @@ export const MovieComponent: FC<MovieComponentProps> = ({movie, withButton=true,
               </Tag>
             ))}
           </HStack>
-          <Text fontSize="lg">{movie.rating}</Text>
-          <Text fontSize="lg">{movie.releaseDate}</Text>
+          <Text fontSize="lg">Értékelés: {movie.rating}</Text>
+          <Text fontSize="lg">Megjelenés: {movie.releaseDate}</Text>
           <Text fontSize="lg">{movie.description}</Text>
           {withButton && (
-          <Button as={RouterLink} to={`/movie/${movie.id}`} {...BasicTheme}>
+          <Button as={RouterLink} to={`/movie/${movie.id}`} {...basicTheme}>
             Részletek
           </Button>
           )}

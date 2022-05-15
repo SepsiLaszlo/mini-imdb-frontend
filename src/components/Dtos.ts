@@ -15,7 +15,7 @@ export interface MovieWithComments{
     rating:number
     releaseDate:string
     categories: Category[]
-    comments: Comment[]
+    comments: CommentWithUser[]
 }
 
 export interface Comment{
@@ -23,7 +23,20 @@ export interface Comment{
     text:string
 }
 
+export interface CommentWithUser{
+    id:number
+    text:string
+    user: User
+}
+
 export interface Category{
     id:number
     name:string
+}
+
+export interface User{ 
+    id:number
+    name: string
+    email: string
+    password: string
 }
