@@ -33,6 +33,12 @@ export interface Category{
     id:number
     name:string
 }
+export interface CategoryWithMovie{
+    id:number
+    name:string
+    movies: Movie[]
+}
+
 
 export interface User{ 
     id:number

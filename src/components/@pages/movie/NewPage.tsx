@@ -16,43 +16,45 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { baseURL, basicTheme } from "../../constants";
 import { Category } from "../../Dtos";
 import { Page } from "../../Page";
 
-
 export const MovieNewPage: FC = (props) => {
-  const [categories, setCategories] = useState<Category[]>([]) 
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
-    axios.get(baseURL+"/Category").then((response) => {
+    axios.get(baseURL + "/Category").then((response) => {
       console.log(response.data);
       setCategories(response.data);
     });
   }, []);
-  let selectedCategories:any = []
-  function toggleCategory(category){
-    const selected = selectedCategories.filter(c => c == category)
-    if(selected.length != 0){
-      selectedCategories = selectedCategories.filter(c => c!=category)
+  let selectedCategories: any = [];
+  function toggleCategory(category) {
+    const selected = selectedCategories.filter((c) => c == category);
+    if (selected.length != 0) {
+      selectedCategories = selectedCategories.filter((c) => c != category);
+    } else {
+      selectedCategories.unshift(category);
     }
-    else{
-     selectedCategories.unshift(category)
-    }
-    return
+    return;
   }
+
+  let navigate = useNavigate();
 
   function saveMovie() {
     console.log("Started saving movie...");
     const title = (document.getElementById("title") as HTMLInputElement)?.value;
-    const rating = (document.getElementById("rating") as HTMLInputElement)?.value;
+    const rating = (document.getElementById("rating") as HTMLInputElement)
+      ?.value;
     const description = (
       document.getElementById("description") as HTMLInputElement
     )?.value;
     const releaseDate = (
       document.getElementById("releaseDate") as HTMLInputElement
     )?.value;
-  
+
     axios
       .post(baseURL + "/Movies", {
         title: title,
@@ -61,7 +63,9 @@ export const MovieNewPage: FC = (props) => {
         releaseDate: releaseDate,
         categories: selectedCategories,
       })
-      .then((response) => console.log("Mentve"));
+      .then((response:any) => {
+        navigate("/movie/"+response.data.id);
+      });
   }
 
   return (
@@ -85,14 +89,21 @@ export const MovieNewPage: FC = (props) => {
 
         <FormLabel htmlFor="description">Leírás</FormLabel>
         <Input id="description" type="text" />
-        
-        { categories && categories.map(category => (
-          <VStack mt={5} alignItems="flex-start">
-          <Checkbox className="checkbox" value={category.id}
-          onChange={()=> {toggleCategory(category.id)}}>
-            {category.name}</Checkbox>
-        </VStack>
-        ))}
+
+        {categories &&
+          categories.map((category) => (
+            <VStack mt={5} alignItems="flex-start">
+              <Checkbox
+                className="checkbox"
+                value={category.id}
+                onChange={() => {
+                  toggleCategory(category.id);
+                }}
+              >
+                {category.name}
+              </Checkbox>
+            </VStack>
+          ))}
         <HStack mt={5} justifyContent="center">
           <Button flexGrow={1} maxW="400px" onClick={saveMovie} {...basicTheme}>
             Létrehozás
