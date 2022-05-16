@@ -76,7 +76,7 @@ export const ProfilePage: FC = (props) => {
   return (
     <Page>
       <Text fontSize="3xl" mt={5}>
-        Belépés
+        Profilom
       </Text>
       {user && (
         <FormControl borderColor="primary" maxW="800px" marginX="auto">

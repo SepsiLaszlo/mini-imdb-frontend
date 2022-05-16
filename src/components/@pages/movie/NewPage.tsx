@@ -63,8 +63,15 @@ export const MovieNewPage: FC = (props) => {
         releaseDate: releaseDate,
         categories: selectedCategories,
       })
-      .then((response:any) => {
-        navigate("/movie/"+response.data.id);
+     
+      .then((response: any) => {
+
+        selectedCategories.forEach((cId) => {
+          axios.post(baseURL + "/Movies/MovieCategory",
+           { movieId: response.data.id, categoryId:cId}).then();
+        });
+        navigate("/movie/" + response.data.id);
+
       });
   }
 
