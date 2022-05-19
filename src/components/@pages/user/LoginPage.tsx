@@ -51,7 +51,7 @@ export const LoginPage: FC = (props) => {
         <FormLabel htmlFor="email">Email</FormLabel>
         <Input id="email" type="text" />
         <FormLabel htmlFor="password">Jelszó</FormLabel>
-        <Input id="password" type="text" />
+        <Input id="password" type="password" />
         <HStack mt={5} justifyContent="center">
           <Button flexGrow={1} maxW="400px" onClick={loginUser} {...basicTheme}>
             Belépés

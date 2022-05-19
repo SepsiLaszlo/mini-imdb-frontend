@@ -117,7 +117,7 @@ export const MovieDetailPage: FC = (props) => {
 
       {!user && <Text>Kommentek írásához jelentkezz be!</Text>}
       {user && (
-        <Box maxWidth="1000px" marginX="auto">
+        <Box maxWidth="1000px" mb={10} marginX="auto">
           <HStack>
             <Text>Komment</Text>
           </HStack>

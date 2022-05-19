@@ -101,6 +101,7 @@ export const MovieNewPage: FC = (props) => {
           categories.map((category) => (
             <VStack mt={5} alignItems="flex-start">
               <Checkbox
+              colorScheme="purple"
                 className="checkbox"
                 value={category.id}
                 onChange={() => {

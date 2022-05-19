@@ -35,7 +35,7 @@ export const CategoryNewPage: FC = (props) => {
         name: name,
       })
       .then((response:any) => {
-        navigate("/category/"+response.data.id);
+        navigate("/category/");
       });
   }
 
