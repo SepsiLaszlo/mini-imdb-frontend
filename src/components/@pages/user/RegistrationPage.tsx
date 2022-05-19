@@ -28,8 +28,8 @@ export const RegistrationPage: FC = (props) => {
   function registerUser() {
     console.log("Started saving movie...");
     const name = (document.getElementById("name") as HTMLInputElement)?.value;
-    const email = (document.getElementById("name") as HTMLInputElement)?.value;
-    const password = (document.getElementById("name") as HTMLInputElement)?.value;
+    const email = (document.getElementById("email") as HTMLInputElement)?.value;
+    const password = (document.getElementById("password") as HTMLInputElement)?.value;
 
     axios
       .post(baseURL + "/User", {
@@ -53,7 +53,7 @@ export const RegistrationPage: FC = (props) => {
         <FormLabel htmlFor="email">Email</FormLabel>
         <Input id="email" type="text" />
         <FormLabel htmlFor="password">Jelszó</FormLabel>
-        <Input id="password" type="text" />
+        <Input id="password" type="password" />
         <HStack mt={5} justifyContent="center">
           <Button flexGrow={1} maxW="400px" onClick={registerUser} {...basicTheme}>
             Regisztráció
